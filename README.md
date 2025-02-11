@@ -17,12 +17,6 @@ npm run build
 
 You must install the [Claude](https://claude.ai/) desktop app which supports MCP.
 
-Create a `.env` file in the root of the repo with the following:
-
-```
-TODOIST_API_KEY=your_todoist_api_key
-```
-
 You can get your Todoist API key from [Todoist > Settings > Integrations](https://todoist.com/app/settings/integrations) > Developer.
 
 Then, in your `claude_desktop_config.json`, add a new MCP server:
@@ -32,7 +26,10 @@ Then, in your `claude_desktop_config.json`, add a new MCP server:
     "mcpServers": {
         "todoist-mcp": {
             "command": "node",
-            "args": ["--env-file=/path/to/repo/.env", "/path/to/repo/build/index.js"]
+            "args": ["/path/to/repo/build/index.js"],
+            "env": {
+                "TODOIST_API_KEY": "your_todoist_api_key"
+            }
         }
     }
 }
