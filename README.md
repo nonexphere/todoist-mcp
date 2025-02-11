@@ -2,6 +2,8 @@
 
 Connect this [Model Context Protocol](https://modelcontextprotocol.io/introduction) server to your LLM to interact with Todoist.
 
+It supports all the APIs available from the [Todoist TypeScript Client](https://doist.github.io/todoist-api-typescript/api/classes/TodoistApi/).
+
 ### Setup
 
 **Build the server app:**
