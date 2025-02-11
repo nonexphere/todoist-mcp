@@ -5,7 +5,7 @@ import { z } from 'zod'
 export function registerReopenTask(server: McpServer, api: TodoistApi) {
     server.tool(
         'reopen-task',
-        'Reopens a previously closed (completed) taskc',
+        'Reopens a previously closed (completed) task in Todoist',
         { taskId: z.string() },
         async ({ taskId }) => {
             const success = await api.reopenTask(taskId)

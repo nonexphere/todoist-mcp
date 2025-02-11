@@ -9,7 +9,7 @@ export function registerAddTask(server: McpServer, api: TodoistApi) {
         {
             content: z.string(),
             description: z.string().optional(),
-            projectId: z.string().optional(),
+            projectId: z.string().optional().describe('The ID of a project to add the task to'),
             assigneeId: z
                 .string()
                 .optional()
@@ -22,8 +22,25 @@ export function registerAddTask(server: McpServer, api: TodoistApi) {
                 .describe('Task priority from 1 (normal) to 4 (urgent)'),
             labels: z.array(z.string()).optional(),
             parentId: z.string().optional().describe('The ID of a parent task'),
+            deadlineDate: z
+                .string()
+                .optional()
+                .describe('Specific date in YYYY-MM-DD format relative to user’s timezone.'),
+            deadlineLang: z
+                .string()
+                .optional()
+                .describe('2-letter code specifying language of deadline.'),
         },
-        async ({ content, projectId, parentId, assigneeId, priority, labels }) => {
+        async ({
+            content,
+            projectId,
+            parentId,
+            assigneeId,
+            priority,
+            labels,
+            deadlineDate,
+            deadlineLang,
+        }) => {
             const task = await api.addTask({
                 content,
                 projectId,
@@ -31,6 +48,8 @@ export function registerAddTask(server: McpServer, api: TodoistApi) {
                 assigneeId,
                 priority,
                 labels,
+                deadlineDate,
+                deadlineLang,
             })
             return {
                 content: [

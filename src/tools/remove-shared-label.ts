@@ -2,22 +2,22 @@ import type { TodoistApi } from '@doist/todoist-api-typescript'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 
-export function registerDeleteComment(server: McpServer, api: TodoistApi) {
+export function registerRemoveSharedLabel(server: McpServer, api: TodoistApi) {
     server.tool(
-        'delete-comment',
-        'Delete a comment from a task in Todoist',
+        'remove-shared-label',
+        'Remove shared label in Todoist',
         {
-            commentId: z.string(),
+            name: z.string(),
         },
-        async ({ commentId }) => {
-            const success = await api.deleteComment(commentId)
+        async ({ name }) => {
+            const success = await api.removeSharedLabel({ name })
             return {
                 content: [
                     {
                         type: 'text',
                         text: success
-                            ? `Comment ${commentId} deleted`
-                            : `Failed to delete comment ${commentId}`,
+                            ? `Shared label ${name} remove`
+                            : `Failed to remove shared label ${name}`,
                     },
                 ],
             }

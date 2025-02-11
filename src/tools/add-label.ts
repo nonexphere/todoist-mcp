@@ -2,10 +2,10 @@ import type { TodoistApi } from '@doist/todoist-api-typescript'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 
-export function registerAddProject(server: McpServer, api: TodoistApi) {
+export function registerAddLabel(server: McpServer, api: TodoistApi) {
     server.tool(
-        'add-project',
-        'Add a project to Todoist',
+        'add-label',
+        'Add a label to a task in Todoist',
         {
             name: z.string(),
             color: z
@@ -32,13 +32,12 @@ export function registerAddProject(server: McpServer, api: TodoistApi) {
                 ])
                 .optional(),
             isFavorite: z.boolean().optional(),
-            viewStyle: z.enum(['list', 'board', 'calendar']).optional(),
-            parentId: z.string().optional().describe('The ID of a parent project'),
+            order: z.number().optional(),
         },
-        async ({ name, color, isFavorite, viewStyle, parentId }) => {
-            const project = await api.addProject({ name, color, isFavorite, viewStyle, parentId })
+        async ({ name, color, isFavorite, order }) => {
+            const label = await api.addLabel({ name, color, isFavorite, order })
             return {
-                content: [{ type: 'text', text: JSON.stringify(project, null, 2) }],
+                content: [{ type: 'text', text: JSON.stringify(label, null, 2) }],
             }
         },
     )

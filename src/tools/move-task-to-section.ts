@@ -5,7 +5,7 @@ import { z } from 'zod'
 export function registerMoveTaskToSection(server: McpServer, api: TodoistApi) {
     server.tool(
         'move-task-to-section',
-        'Move a task to a different section',
+        'Move a task to a different section in Todoist',
         {
             taskId: z.string(),
             sectionId: z.string(),

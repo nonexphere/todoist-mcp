@@ -5,7 +5,7 @@ import { z } from 'zod'
 export function registerMoveTaskToProject(server: McpServer, api: TodoistApi) {
     server.tool(
         'move-task-to-project',
-        'Move a task to a different project',
+        'Move a task to a different project in Todoist',
         {
             taskId: z.string(),
             projectId: z.string(),
