@@ -25,6 +25,7 @@ import { registerGetSections } from './tools/get-sections.js'
 import { registerGetSharedLabels } from './tools/get-shared-labels.js'
 import { registerGetTaskComments } from './tools/get-task-comments.js'
 import { registerGetTask } from './tools/get-task.js'
+import { registerGetTasksFilter } from './tools/get-tasks-filter.js'
 import { registerGetTasks } from './tools/get-tasks.js'
 import { registerMoveTaskToParent } from './tools/move-task-to-parent.js'
 import { registerMoveTaskToProject } from './tools/move-task-to-project.js'
@@ -70,6 +71,7 @@ registerMoveTaskToProject(server, api)
 registerMoveTaskToSection(server, api)
 registerDeleteTask(server, api)
 registerReopenTask(server, api)
+registerGetTasksFilter(server, api)
 
 /* Sections */
 registerAddSection(server, api)
