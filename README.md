@@ -17,7 +17,7 @@ npm run build
 
 You must install the [Claude](https://claude.ai/) desktop app which supports MCP.
 
-You can get your Todoist API key from [Todoist > Settings > Integrations](https://todoist.com/app/settings/integrations) > Developer.
+You can get your Todoist API key from [Todoist > Settings > Integrations > Developer](https://app.todoist.com/app/settings/integrations/developer).
 
 Then, in your `claude_desktop_config.json`, add a new MCP server:
 
@@ -43,7 +43,7 @@ You can now launch Claude desktop app and ask to update Todoist.
 
 [![smithery badge](https://smithery.ai/badge/@miottid/todoist-mcp)](https://smithery.ai/server/@miottid/todoist-mcp)
 
-To install Todoist MCP for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@miottid/todoist-mcp):
+Install Todoist MCP on Claude Desktop using [Smithery](https://smithery.ai/server/@miottid/todoist-mcp):
 
 ```bash
 npx -y @smithery/cli install @miottid/todoist-mcp --client claude
