@@ -25,7 +25,7 @@ import { registerGetSections } from './tools/get-sections.js'
 import { registerGetSharedLabels } from './tools/get-shared-labels.js'
 import { registerGetTaskComments } from './tools/get-task-comments.js'
 import { registerGetTask } from './tools/get-task.js'
-import { registerGetTasksFilter } from './tools/get-tasks-filter.js'
+import { registerGetTasksByFilter } from './tools/get-tasks-by-filter.js'
 import { registerGetTasks } from './tools/get-tasks.js'
 import { registerMoveTaskToParent } from './tools/move-task-to-parent.js'
 import { registerMoveTaskToProject } from './tools/move-task-to-project.js'
@@ -46,7 +46,7 @@ if (!process.env.TODOIST_API_KEY) {
 const api = new TodoistApi(process.env.TODOIST_API_KEY)
 
 /* Create server instance */
-const server = new McpServer({ name: 'todoist-mcp', version: '1.0.0' })
+const server = new McpServer({ name: 'todoist-mcp', version: '1.0.1' })
 
 /* Register Todoist tools */
 
@@ -71,7 +71,7 @@ registerMoveTaskToProject(server, api)
 registerMoveTaskToSection(server, api)
 registerDeleteTask(server, api)
 registerReopenTask(server, api)
-registerGetTasksFilter(server, api)
+registerGetTasksByFilter(server, api)
 
 /* Sections */
 registerAddSection(server, api)

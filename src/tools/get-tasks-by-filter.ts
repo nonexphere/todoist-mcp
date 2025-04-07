@@ -119,26 +119,22 @@ const description =
     '- See every task you’re assigned to in the project ""Work"", use this: "#Work & assigned to: me"\n' +
     '- See all uncompletable tasks (without a checkbox); note - this query will also include tasks using italic formatting, use this: "(search: *) & !(search: **) & !(search: ***)"\n'
 
-export function registerGetTasksFilter(server: McpServer, api: TodoistApi) {
-    server.tool(
-        'get-tasks-filter',
-        description,
-        {
-            filter: z.string().optional(),
-        },
-        async ({ filter }) => {
-            let response = await api.getTasks({ filter })
-            const tasks = response.results
-            while (response.nextCursor) {
-                response = await api.getTasks({ filter, cursor: response.nextCursor })
-                tasks.push(...response.results)
-            }
-            return {
-                content: tasks.map((task) => ({
-                    type: 'text',
-                    text: JSON.stringify(task, null, 2),
-                })),
-            }
-        },
-    )
+export function registerGetTasksByFilter(server: McpServer, api: TodoistApi) {
+    server.tool('get-tasks-by-filter', description, { filter: z.string() }, async ({ filter }) => {
+        let response = await api.getTasksByFilter({ query: filter })
+        const tasks = response.results
+        while (response.nextCursor) {
+            response = await api.getTasksByFilter({
+                query: filter,
+                cursor: response.nextCursor,
+            })
+            tasks.push(...response.results)
+        }
+        return {
+            content: tasks.map((task) => ({
+                type: 'text',
+                text: JSON.stringify(task, null, 2),
+            })),
+        }
+    })
 }
