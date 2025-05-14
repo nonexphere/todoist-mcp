@@ -21,14 +21,14 @@ export function registerUpdateTask(server: McpServer, api: TodoistApi) {
                 .optional()
                 .describe('Task priority from 1 (normal) to 4 (urgent)'),
             labels: z.array(z.string()).optional(),
-            deadlineDate: z
+            dueString: z
                 .string()
                 .optional()
-                .describe('Specific date in YYYY-MM-DD format relative to user’s timezone.'),
-            deadlineLang: z
+                .describe('Human-friendly string representation of the due date (e.g. "tomorrow at 10am").'),
+            dueLang: z
                 .string()
                 .optional()
-                .describe('2-letter code specifying language of deadline.'),
+                .describe('2-letter code specifying language of dueString.'),
         },
         async ({
             taskId,
@@ -37,8 +37,8 @@ export function registerUpdateTask(server: McpServer, api: TodoistApi) {
             assigneeId,
             priority,
             labels,
-            deadlineDate,
-            deadlineLang,
+            dueString,
+            dueLang,
         }) => {
             const task = await api.updateTask(taskId, {
                 content,
@@ -46,8 +46,8 @@ export function registerUpdateTask(server: McpServer, api: TodoistApi) {
                 assigneeId,
                 priority,
                 labels,
-                deadlineDate,
-                deadlineLang,
+                dueString,
+                dueLang,
             })
             return {
                 content: [{ type: 'text', text: JSON.stringify(task, null, 2) }],
