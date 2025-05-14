@@ -7,11 +7,14 @@ import { registerAddLabel } from './tools/add-label.js'
 import { registerAddProject } from './tools/add-project.js'
 import { registerAddSection } from './tools/add-section.js'
 import { registerAddTask } from './tools/add-task.js'
+import { registerAddTasksBatch } from './tools/add-tasks-batch.js'
 import { registerCloseTask } from './tools/close-task.js'
 import { registerDeleteComment } from './tools/delete-comment.js'
+import { registerDeleteTasksBatch } from './tools/delete-tasks-batch.js'
 import { registerDeleteLabel } from './tools/delete-label.js'
 import { registerDeleteProject } from './tools/delete-project.js'
 import { registerDeleteSection } from './tools/delete-section.js'
+import { registerUpdateTasksBatch } from './tools/update-tasks-batch.js'
 import { registerDeleteTask } from './tools/delete-task.js'
 import { registerGetComment } from './tools/get-comment.js'
 import { registerGetLabel } from './tools/get-label.js'
@@ -63,13 +66,16 @@ registerGetProjectCollaborators(server, api)
 
 /* Tasks */
 registerAddTask(server, api)
+registerAddTasksBatch(server, api)
 registerGetTask(server, api)
 registerGetTasks(server, api)
 registerUpdateTask(server, api)
+registerUpdateTasksBatch(server, api)
 registerCloseTask(server, api)
 registerMoveTaskToProject(server, api)
 registerMoveTaskToSection(server, api)
 registerDeleteTask(server, api)
+registerDeleteTasksBatch(server, api)
 registerReopenTask(server, api)
 registerGetTasksByFilter(server, api)
 
